@@ -3,12 +3,10 @@ using System.Collections;
 
 public class CharacterSpawner : MonoBehaviour
 {
-    public int knightLayer = 0;
+    public int characterLayer = 0;
     public PooledObject character;
     [SerializeField]
     Transform _target;
-
-    private float timer = 0f;
 
     public void Spawn()
     {
@@ -17,7 +15,7 @@ public class CharacterSpawner : MonoBehaviour
         // Spawn object with random 2D rotation.
         PooledObject instance = Pool.Instance.Spawn(character, spawnPosition, Quaternion.identity);
         // We can avoid GetComponent<>() for a frequently accessed component, which is nice.
-        instance.As<Character>().Init(_target, knightLayer);
+        instance.As<Character>().Init(_target, characterLayer);
     }
 
 

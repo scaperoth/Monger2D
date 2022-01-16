@@ -1,24 +1,47 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Castle : MonoBehaviour
 {
     [SerializeField]
     Door _door;
     [SerializeField]
-    CharacterSpawner _spawner;
+    CharacterSpawner _knightSpawner;
+    [SerializeField]
+    CharacterSpawner _merchantSpawner;
 
-    float _spawnDelay = 5f;
-    float _lastSpawnTime = 0;
-    float _minspawnRate = 10f;
-    float _maxspawnRate = 20f;
+    public UnityEvent<float> OnScoreChanged;
+
+    float _health;
+    public float Health
+    {
+        get
+        {
+            return _health;
+        }
+        set
+        {
+            _health = value;
+            OnScoreChanged.Invoke(value);
+        }
+    }
+
+    float _knightSpawnDelay = 5f;
+    float _lastKnightSpawnTime = 0;
+    float _minKnightSpawnRate = 10f;
+    float _maxKnightSpawnRate = 20f;
+
+
+    float _merchantSpawnDelay = 5f;
+    float _lastMerchantSpawnTime = 0;
+    float _minMerchantSpawnRate = 10f;
+    float _maxMerchantSpawnRate = 20f;
 
     bool _doorChanging = false;
 
     private void Start()
     {
-        _spawnDelay = Random.Range(1f, 5f);
+        _knightSpawnDelay = Random.Range(1f, 5f);
         ResetSeed();
     }
 
@@ -33,27 +56,45 @@ public class Castle : MonoBehaviour
         {
             SpawnKnights();
         }
+
+        SpawnMerchants();
     }
 
     public void SpawnKnights()
     {
-        if(_spawner == null || _spawner.enabled == false)
+        if(_knightSpawner == null || _knightSpawner.enabled == false)
         {
             return;
         }
 
-        if (_lastSpawnTime + _spawnDelay < Time.time)
+        if (_lastKnightSpawnTime + _knightSpawnDelay < Time.time)
         {
-            _spawner.Spawn(5, .5f, 1f);
-            _spawnDelay = Random.Range(_minspawnRate, _maxspawnRate);
+            _knightSpawner.Spawn(5, .5f, 1f);
+            _knightSpawnDelay = Random.Range(_minKnightSpawnRate, _maxKnightSpawnRate);
             ResetSeed();
-            _lastSpawnTime = Time.time;
+            _lastKnightSpawnTime = Time.time;
+        }
+    }
+
+    public void SpawnMerchants()
+    {
+        if (_merchantSpawner == null || _merchantSpawner.enabled == false)
+        {
+            return;
+        }
+
+        if (_lastMerchantSpawnTime + _merchantSpawnDelay < Time.time)
+        {
+            _merchantSpawner.Spawn(5, .5f, 1f);
+            _merchantSpawnDelay = Random.Range(_minMerchantSpawnRate, _maxMerchantSpawnRate);
+            ResetSeed();
+            _lastMerchantSpawnTime = Time.time;
         }
     }
 
     void ResetSeed()
     {
-        int value = (int)(_spawnDelay * 10);
+        int value = (int)(_knightSpawnDelay * 10);
         Random.InitState(value);
     }
 
