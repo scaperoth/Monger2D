@@ -751,6 +751,7 @@ GameObject:
   - component: {fileID: 5525462626669450891}
   - component: {fileID: -7550580721328681640}
   - component: {fileID: -6829616813959460475}
+  - component: {fileID: -326229075520134218}
   m_Layer: 0
   m_Name: Chara_05
   m_TagString: Untagged
@@ -830,6 +831,32 @@ SortingGroup:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 8
+--- !u!61 &-326229075520134218
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1619877827293244}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.47340947}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.0886186}
+  m_EdgeRadius: 0
 --- !u!1 &1632543007335744
 GameObject:
   m_ObjectHideFlags: 0

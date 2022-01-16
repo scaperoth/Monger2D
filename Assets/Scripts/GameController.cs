@@ -5,13 +5,29 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     [SerializeField]
-    Door _leftDoor;
+    Castle leftCastle;
     [SerializeField]
-    Door _rightDoor;
+    Castle rightCastle;
 
-    // Start is called before the first frame update
-    public void OnDoorChange(Door door)
+    private void Update()
     {
+        bool horizPressed = Input.GetButtonDown("Horizontal");
+        if (horizPressed)
+        {
+            TryOpenDoor();
+        }
+    }
 
+    private void TryOpenDoor()
+    {
+        float horizValue = Input.GetAxis("Horizontal");
+        if (horizValue < 0)
+        {
+            leftCastle.ChangeDoor();
+        }
+        else if (horizValue > 0)
+        {
+            rightCastle.ChangeDoor();
+        }
     }
 }

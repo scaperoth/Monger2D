@@ -14,12 +14,12 @@ public class Door : MonoBehaviour
 
     public void Open(bool doorOpen)
     {
+        isOpen = doorOpen;
         _animator.SetBool("DoorOpen", doorOpen);
     }
 
     public void ChangeComplete(int open)
     {
-        isOpen = open == 1;
         OnDoorChange.Invoke(this);
     }
 }

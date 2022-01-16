@@ -132,7 +132,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 70261035}
-  - component: {fileID: 70261036}
   - component: {fileID: 70261037}
   m_Layer: 0
   m_Name: Spawner
@@ -155,21 +154,6 @@ Transform:
   m_Father: {fileID: 582861069}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &70261036
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 70261034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8080a64414b234b59a30143d705844a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectPools:
-  - amount: 10
-    objectToPool: {fileID: -6246817289294081763, guid: 79639b84e20f0ea4694165c0d4554387, type: 3}
 --- !u!114 &70261037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a76e2da181be4ad5bdcef24eb27ba76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnRate: 1
+  knightLayer: 6
   character: {fileID: -6246817289294081763, guid: 79639b84e20f0ea4694165c0d4554387, type: 3}
   _target: {fileID: 1047000109}
 --- !u!1 &103500655
@@ -196,6 +180,7 @@ GameObject:
   - component: {fileID: 103500656}
   - component: {fileID: 103500657}
   - component: {fileID: 103500658}
+  - component: {fileID: 103500659}
   m_Layer: 0
   m_Name: Asset 21 - Door
   m_TagString: Untagged
@@ -294,6 +279,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5666418, y: 2.0949574}
   m_EdgeRadius: 0
+--- !u!114 &103500659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103500655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 573204539c70d4877bbb79e4e979b2f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyKnightLayer: 7
 --- !u!1 &113599071
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,8 +359,8 @@ MonoBehaviour:
   OnDoorChange:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1401745358}
-        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+      - m_Target: {fileID: 832862109}
+        m_TargetAssemblyTypeName: Castle, Assembly-CSharp
         m_MethodName: OnDoorChange
         m_Mode: 0
         m_Arguments:
@@ -439,7 +437,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnDoorChange:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 582861070}
+        m_TargetAssemblyTypeName: Castle, Assembly-CSharp
+        m_MethodName: OnDoorChange
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &219816777
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,6 +696,54 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &365408642
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 365408644}
+  - component: {fileID: 365408643}
+  m_Layer: 0
+  m_Name: Pool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &365408643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365408642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8080a64414b234b59a30143d705844a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectPools:
+  - amount: 10
+    objectToPool: {fileID: -6246817289294081763, guid: 79639b84e20f0ea4694165c0d4554387, type: 3}
+  - amount: 10
+    objectToPool: {fileID: 4982369939663191114, guid: 08ac15b230659ae4b89a9a4f74fcdad4, type: 3}
+--- !u!4 &365408644
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365408642}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.22131431, y: 0.8526902, z: 0.78556156}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &447674565
 GameObject:
   m_ObjectHideFlags: 0
@@ -904,6 +962,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 582861069}
+  - component: {fileID: 582861070}
   m_Layer: 0
   m_Name: CastleLeft
   m_TagString: Untagged
@@ -932,6 +991,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &582861070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582861068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b927953fed0034f4492e4c931e3c76b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _door: {fileID: 161645234}
+  _spawner: {fileID: 70261037}
 --- !u!1 &623078451
 GameObject:
   m_ObjectHideFlags: 0
@@ -1025,6 +1098,7 @@ GameObject:
   - component: {fileID: 739806472}
   - component: {fileID: 739806473}
   - component: {fileID: 739806474}
+  - component: {fileID: 739806475}
   m_Layer: 0
   m_Name: Asset 21 - Door
   m_TagString: Untagged
@@ -1123,6 +1197,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5415578, y: 2.1745667}
   m_EdgeRadius: 0
+--- !u!114 &739806475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 739806471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 573204539c70d4877bbb79e4e979b2f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyKnightLayer: 6
 --- !u!1 &760077302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1296,6 +1383,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 832862108}
+  - component: {fileID: 832862109}
   m_Layer: 0
   m_Name: CastleRight
   m_TagString: Untagged
@@ -1324,6 +1412,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &832862109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832862107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b927953fed0034f4492e4c931e3c76b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _door: {fileID: 113599074}
+  _spawner: {fileID: 1047000111}
 --- !u!1 &863587529
 GameObject:
   m_ObjectHideFlags: 0
@@ -1542,14 +1644,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1047000109}
-  - component: {fileID: 1047000110}
+  - component: {fileID: 1047000111}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1047000109
 Transform:
   m_ObjectHideFlags: 0
@@ -1558,13 +1660,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1047000108}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7, y: 0, z: 0}
+  m_LocalPosition: {x: 7, y: -0.93, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 832862108}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1047000110
+--- !u!114 &1047000111
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1573,10 +1675,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1047000108}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8080a64414b234b59a30143d705844a3, type: 3}
+  m_Script: {fileID: 11500000, guid: 7a76e2da181be4ad5bdcef24eb27ba76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPools: []
+  knightLayer: 7
+  character: {fileID: 4982369939663191114, guid: 08ac15b230659ae4b89a9a4f74fcdad4, type: 3}
+  _target: {fileID: 70261035}
 --- !u!1 &1071027660
 GameObject:
   m_ObjectHideFlags: 0
@@ -1886,8 +1990,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba2ca10c3f9f6452abc1f4e4bf8d7e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _leftDoor: {fileID: 161645234}
-  _rightDoor: {fileID: 113599074}
+  leftCastle: {fileID: 582861070}
+  rightCastle: {fileID: 832862109}
 --- !u!4 &1401745359
 Transform:
   m_ObjectHideFlags: 0

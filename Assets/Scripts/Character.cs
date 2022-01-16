@@ -13,10 +13,10 @@ public class Character : MonoBehaviour
 
     private void Start()
     {
-        Init();
+        SetDefaults();
     }
 
-    private void Init()
+    private void SetDefaults()
     {
         if (_transform == null)
         {
@@ -26,11 +26,16 @@ public class Character : MonoBehaviour
         }
     }
 
+    public void Init(Transform target, int layer)
+    {
+        SetDefaults();
+        gameObject.layer = layer;
+        SetTargetTransform(target);
+    }
+
     public void SetTargetTransform(Transform target)
     {
-        Init();
-
-        _target = new Vector3(target.position.x, _transform.position.y, _transform.position.z);
+        _target = new Vector3(target.position.x, target.position.y, _transform.position.z);
 
         if (_target.x > _transform.position.x)
         {
@@ -41,21 +46,15 @@ public class Character : MonoBehaviour
             _transform.localScale = _originalScale;
         }
 
-        Debug.Log($"Setting target transform to {_target}, {_targetSet}");
-
         _targetSet = true;
-        Debug.Log($"new target state {_targetSet}");
     }
 
     private void Update()
     {
         if (!_targetSet)
         {
-            Debug.Log("Target not set yet");
             return;
         }
-
-        Debug.Log($"_transform.position {_transform.position}, _target {_target}");
 
         _animator.SetBool("Walking", true);
         _transform.position = Vector3.MoveTowards(_transform.position, _target, _speed * Time.deltaTime);
