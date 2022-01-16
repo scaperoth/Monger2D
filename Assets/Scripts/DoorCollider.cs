@@ -1,28 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DoorCollider : MonoBehaviour
 {
     [SerializeField]
-    int enemyKnightLayer = 0;
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    int[] _characterLayers;
+    
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.layer == enemyKnightLayer)
+        if(_characterLayers == null)
         {
-            PooledObject other = collision.gameObject.GetComponent<PooledObject>();
-            other.Finish();
+            return;
+        }
+
+        if (ChracterLayersContain(collision.gameObject.layer))
+        {
+            Character other = collision.gameObject.GetComponent<Character>();
+            other.Die();
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    public bool ChracterLayersContain(int layer)
     {
-        Debug.Log("COLLSION EXIT");
-    }
+        for (int i = 0; i < _characterLayers.Length; i++)
+        {
+            if(_characterLayers[i] == layer)
+            {
+                return true;
+            }
+        }
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        Debug.Log("COLLISION STAY");
+        return false;
     }
 }

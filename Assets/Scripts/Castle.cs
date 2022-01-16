@@ -18,6 +18,7 @@ public class Castle : MonoBehaviour
 
     private void Start()
     {
+        _spawnDelay = Random.Range(1f, 5f);
         ResetSeed();
     }
 
@@ -60,7 +61,6 @@ public class Castle : MonoBehaviour
     public void OnDoorChange(Door door)
     {
         _doorChanging = false;
-        _spawnDelay = Random.Range(1f, 5f);
     }
 
     public void OpenDoor(bool open)

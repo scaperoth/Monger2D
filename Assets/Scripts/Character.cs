@@ -60,4 +60,10 @@ public class Character : MonoBehaviour
         _transform.position = Vector3.MoveTowards(_transform.position, _target, _speed * Time.deltaTime);
     }
 
+    public void Die()
+    {
+        _targetSet = false;
+        _animator.SetBool("Walking", false);
+        _animator.SetTrigger("Dead");
+    }
 }

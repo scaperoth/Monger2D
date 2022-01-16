@@ -916,6 +916,7 @@ GameObject:
   - component: {fileID: -5048311207796296698}
   - component: {fileID: 536804702238045563}
   - component: {fileID: -5648242859928274211}
+  - component: {fileID: 6723394528686960823}
   m_Layer: 0
   m_Name: Chara_15
   m_TagString: Untagged
@@ -1005,7 +1006,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.4810546}
@@ -1021,6 +1022,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.0104576}
   m_EdgeRadius: 0
+--- !u!50 &6723394528686960823
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969890579225098}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 1
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &3140395575169069754
 GameObject:
   m_ObjectHideFlags: 0
