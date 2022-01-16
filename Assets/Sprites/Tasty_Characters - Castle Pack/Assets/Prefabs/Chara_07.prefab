@@ -667,6 +667,8 @@ GameObject:
   - component: {fileID: 4505959360881032}
   - component: {fileID: -8087628117096553715}
   - component: {fileID: -4944729460400459172}
+  - component: {fileID: -4273792303995516793}
+  - component: {fileID: 1657480304814642094}
   m_Layer: 0
   m_Name: Chara_07
   m_TagString: Untagged
@@ -716,6 +718,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   behaviour: {fileID: -8087628117096553715}
+--- !u!95 &-4273792303995516793
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565338173445856}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b1721d887d62842b3b7ee9f2fc664bff, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!210 &1657480304814642094
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1565338173445856}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 6
 --- !u!1 &1659299845747602
 GameObject:
   m_ObjectHideFlags: 0
