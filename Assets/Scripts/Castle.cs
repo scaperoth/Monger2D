@@ -21,8 +21,9 @@ public class Castle : MonoBehaviour
         }
         set
         {
-            _health = value;
-            OnScoreChanged.Invoke(value);
+            float clampedValue = Mathf.Clamp(value, 0, 999);
+            _health = clampedValue;
+            OnScoreChanged.Invoke(clampedValue);
         }
     }
 

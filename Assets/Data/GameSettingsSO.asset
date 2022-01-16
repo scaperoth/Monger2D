@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GameSettingsSO
   m_EditorClassIdentifier: 
   characterSpeed: 2
-  knightDamage: 5
-  merchantBonus: 2
-  deterioratingHealthValue: 1
+  knightDamage: 20
+  merchantBonus: 10
+  deterioratingHealthValue: 2
   deterioratingHealthDelay: 0.5
   startingCastleHealth: 100

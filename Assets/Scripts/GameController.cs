@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -6,6 +7,8 @@ public class GameController : MonoBehaviour
     GameState _gameState;
     [SerializeField]
     GameSettings _gameSettings;
+    [SerializeField]
+    GameObject _endGameOverlay;
 
     // layer names
     string _leftKnightLayer = "Left Knight";
@@ -41,6 +44,11 @@ public class GameController : MonoBehaviour
             leftCastle.Health -= _gameSettings.deterioratingHealthValue;
             rightCastle.Health -= _gameSettings.deterioratingHealthValue;
             _lastAutomaticHealthUpdate = Time.time;
+        }
+
+        if(leftCastle.Health <= 0 || rightCastle.Health <= 0)
+        {
+            LoseConditionReached();
         }
     }
 
@@ -107,5 +115,23 @@ public class GameController : MonoBehaviour
                 rightCastle.Health = newScore;
             }
         }
+    }
+
+    void LoseConditionReached()
+    {
+        Time.timeScale = 0;
+        _endGameOverlay.SetActive(true);
+    }
+
+    public void Restart()
+    {
+        Debug.Log("WOH, RESTARTING");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void Exit()
+    {
+        Debug.Log("WOH, EXITING");
+        Application.Quit();
     }
 }
