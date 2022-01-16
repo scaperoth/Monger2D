@@ -4,11 +4,11 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoBehaviour
 {
     [SerializeField]
-    GameState _gameState;
-    [SerializeField]
     GameSettings _gameSettings;
     [SerializeField]
     GameObject _endGameOverlay;
+    [SerializeField]
+    GameObject _startGameOverlay;
 
     // layer names
     string _leftKnightLayer = "Left Knight";
@@ -24,29 +24,33 @@ public class GameController : MonoBehaviour
     Castle rightCastle;
 
     float _lastAutomaticHealthUpdate = 0f;
+    float _timer = 0f;
 
     private void Start()
     {
+        Time.timeScale = 0;
         leftCastle.Health = _gameSettings.startingCastleHealth;
         rightCastle.Health = _gameSettings.startingCastleHealth;
     }
 
     private void Update()
     {
+        _timer += Time.deltaTime;
+
         bool horizPressed = Input.GetButtonDown("Horizontal");
         if (horizPressed)
         {
             TryOpenDoor();
         }
 
-        if(_lastAutomaticHealthUpdate + _gameSettings.deterioratingHealthDelay < Time.time)
+        if (_lastAutomaticHealthUpdate + _gameSettings.deterioratingHealthDelay < _timer)
         {
             leftCastle.Health -= _gameSettings.deterioratingHealthValue;
             rightCastle.Health -= _gameSettings.deterioratingHealthValue;
-            _lastAutomaticHealthUpdate = Time.time;
+            _lastAutomaticHealthUpdate = _timer;
         }
 
-        if(leftCastle.Health <= 0 || rightCastle.Health <= 0)
+        if (leftCastle.Health <= 0 || rightCastle.Health <= 0)
         {
             LoseConditionReached();
         }
@@ -81,10 +85,10 @@ public class GameController : MonoBehaviour
         Debug.Log($"{characterLayer} destroyed by {castleLayer} inside");
 
         // character goes into left castle
-        if(castleLayer == _leftCastleLayer)
+        if (castleLayer == _leftCastleLayer)
         {
             // if character is knight then take away health
-            if(characterLayer == _rightKnightLayer)
+            if (characterLayer == _rightKnightLayer)
             {
                 float newScore = leftCastle.Health - _gameSettings.knightDamage;
                 leftCastle.Health = newScore;
@@ -125,13 +129,23 @@ public class GameController : MonoBehaviour
 
     public void Restart()
     {
-        Debug.Log("WOH, RESTARTING");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void Play()
+    {
+        Time.timeScale = 1;
+        _startGameOverlay.SetActive(false);
     }
 
     public void Exit()
     {
-        Debug.Log("WOH, EXITING");
-        Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#elif UNITY_WEBPLAYER
+         Application.OpenURL(webplayerQuitURL);
+#else
+         Application.Quit();
+#endif
     }
 }

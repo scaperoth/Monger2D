@@ -40,6 +40,8 @@ public class Castle : MonoBehaviour
 
     bool _doorChanging = false;
 
+    float _timer = 0f;
+
     private void Start()
     {
         _knightSpawnDelay = Random.Range(1f, 5f);
@@ -53,6 +55,8 @@ public class Castle : MonoBehaviour
 
     private void Update()
     {
+        _timer += Time.deltaTime;
+
         if(!_doorChanging && _door.isOpen)
         {
             SpawnKnights();
@@ -68,12 +72,12 @@ public class Castle : MonoBehaviour
             return;
         }
 
-        if (_lastKnightSpawnTime + _knightSpawnDelay < Time.time)
+        if (_lastKnightSpawnTime + _knightSpawnDelay < _timer)
         {
             _knightSpawner.Spawn(5, .5f, 1f);
             _knightSpawnDelay = Random.Range(_minKnightSpawnRate, _maxKnightSpawnRate);
             ResetSeed();
-            _lastKnightSpawnTime = Time.time;
+            _lastKnightSpawnTime = _timer;
         }
     }
 
@@ -84,12 +88,12 @@ public class Castle : MonoBehaviour
             return;
         }
 
-        if (_lastMerchantSpawnTime + _merchantSpawnDelay < Time.time)
+        if (_lastMerchantSpawnTime + _merchantSpawnDelay < _timer)
         {
             _merchantSpawner.Spawn(5, .5f, 1f);
             _merchantSpawnDelay = Random.Range(_minMerchantSpawnRate, _maxMerchantSpawnRate);
             ResetSeed();
-            _lastMerchantSpawnTime = Time.time;
+            _lastMerchantSpawnTime = _timer;
         }
     }
 

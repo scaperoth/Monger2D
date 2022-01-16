@@ -5,9 +5,11 @@ public class GameTimerUI : MonoBehaviour
 {
     [SerializeField]
     TextMeshProUGUI _timerUI;
+    float _timer = 0f;
 
     private void Update()
     {
-        _timerUI.text = $"Timer {Time.time.ToString("F2")}s";
+        _timer += Time.deltaTime;
+        _timerUI.text = $"Timer {_timer.ToString("F2")}s";
     }
 }

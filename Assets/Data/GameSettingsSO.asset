@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 218c06056864f43e39d325d7fe167355, type: 3}
   m_Name: GameSettingsSO
   m_EditorClassIdentifier: 
-  characterSpeed: 2
+  characterSpeed: 3
   knightDamage: 20
   merchantBonus: 10
   deterioratingHealthValue: 2
