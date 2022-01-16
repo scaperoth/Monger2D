@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
-    float _speed = 1;
+    [SerializeField]
+    GameSettings _gameSettings;
+
     Vector3 _target;
     Transform _transform;
     Vector3 _flipper = new Vector3(-1, 1, 1);
@@ -57,7 +59,7 @@ public class Character : MonoBehaviour
         }
 
         _animator.SetBool("Walking", true);
-        _transform.position = Vector3.MoveTowards(_transform.position, _target, _speed * Time.deltaTime);
+        _transform.position = Vector3.MoveTowards(_transform.position, _target, _gameSettings.characterSpeed * Time.deltaTime);
     }
 
     public void Die()

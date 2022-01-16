@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Pool : MonoBehaviour
 {
@@ -32,6 +33,9 @@ public class Pool : MonoBehaviour
     // Pool of objects, indexed by instance ID.
     // A queue works pretty naturally here.
     private Dictionary<int, Queue<PooledObject>> pool;
+
+    public UnityEvent<PooledObject> OnObjectSpawned;
+    public UnityEvent<PooledObject> OnObjectDepawned;
 
     private void Awake()
     {
@@ -88,6 +92,7 @@ public class Pool : MonoBehaviour
         clone.transform.position = position;
         clone.transform.rotation = rotation;
         clone.gameObject.SetActive(true);
+        OnObjectSpawned.Invoke(clone);
         return clone;
     }
 
@@ -97,5 +102,6 @@ public class Pool : MonoBehaviour
         obj.gameObject.SetActive(false);
         var queue = pool[obj.id];
         queue.Enqueue(obj);
+        OnObjectDepawned.Invoke(obj);
     }
 }

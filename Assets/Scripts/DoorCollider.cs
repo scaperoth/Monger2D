@@ -1,9 +1,13 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class DoorCollider : MonoBehaviour
 {
     [SerializeField]
     int[] _characterLayers;
+    [SerializeField]
+    UnityEvent<Character> OnCharacterKilledByDoor;
+
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -16,6 +20,7 @@ public class DoorCollider : MonoBehaviour
         {
             Character other = collision.gameObject.GetComponent<Character>();
             other.Die();
+            OnCharacterKilledByDoor.Invoke(other);
         }
     }
 

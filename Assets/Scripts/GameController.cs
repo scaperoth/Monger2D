@@ -5,6 +5,9 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     [SerializeField]
+    GameState _gameState;
+
+    [SerializeField]
     Castle leftCastle;
     [SerializeField]
     Castle rightCastle;
@@ -29,5 +32,15 @@ public class GameController : MonoBehaviour
         {
             rightCastle.ChangeDoor();
         }
+    }
+
+    public void OnObjectSpawned(PooledObject obj)
+    {
+
+    }
+
+    public void OnObjectDespawned(PooledObject obj)
+    {
+
     }
 }
