@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 298c28dec407e47ec8f9bc22170262b6, type: 3}
+  m_Name: SoundManagerSO
+  m_EditorClassIdentifier: 
+  mainGameSound: {fileID: 8300000, guid: c2be26308550a474f9c60bf27c750ca2, type: 3}
+  startMenuSound: {fileID: 8300000, guid: 3916bbc71d3164e90ad8acc252c8de08, type: 3}
+  gameOverSound: {fileID: 8300000, guid: 63bfac3f3cd604269853fca59c5b8e5d, type: 3}
+  doorSlamSound: {fileID: 8300000, guid: 022a0289a92454b1d86411733950e5ea, type: 3}
+  characterHurtSound: {fileID: 8300000, guid: 1f7ae8987fc094f95a53c12f765087b2, type: 3}
+  gateChainSound: {fileID: 0}

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections;
 
 public class Castle : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Castle : MonoBehaviour
     CharacterSpawner _merchantSpawner;
 
     public UnityEvent<float> OnScoreChanged;
+    public UnityEvent<bool> OnDoorStateChanged;
 
     float _health;
     public float Health
@@ -57,7 +59,7 @@ public class Castle : MonoBehaviour
     {
         _timer += Time.deltaTime;
 
-        if(!_doorChanging && _door.isOpen)
+        if (!_doorChanging && _door.isOpen)
         {
             SpawnKnights();
         }
@@ -67,7 +69,7 @@ public class Castle : MonoBehaviour
 
     public void SpawnKnights()
     {
-        if(_knightSpawner == null || _knightSpawner.enabled == false)
+        if (_knightSpawner == null || _knightSpawner.enabled == false)
         {
             return;
         }
@@ -103,7 +105,6 @@ public class Castle : MonoBehaviour
         Random.InitState(value);
     }
 
-    // Start is called before the first frame update
     public void OnDoorChange(Door door)
     {
         _doorChanging = false;
@@ -111,7 +112,7 @@ public class Castle : MonoBehaviour
 
     public void OpenDoor(bool open)
     {
-        if(_door.isOpen == open)
+        if (_door.isOpen == open)
         {
             return;
         }
@@ -126,6 +127,14 @@ public class Castle : MonoBehaviour
             return;
         }
 
+        StartCoroutine(PlayDoorSound());
         OpenDoor(!_door.isOpen);
+    }
+
+    IEnumerator PlayDoorSound()
+    {
+        yield return new WaitForSeconds(.25f);
+
+        OnDoorStateChanged.Invoke(_door.isOpen);
     }
 }

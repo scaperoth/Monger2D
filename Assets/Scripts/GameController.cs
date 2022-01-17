@@ -9,6 +9,12 @@ public class GameController : MonoBehaviour
     GameObject _endGameOverlay;
     [SerializeField]
     GameObject _startGameOverlay;
+    [SerializeField]
+    SoundManager _soundManager;
+    [SerializeField]
+    AudioSource _musicAudio;
+    [SerializeField]
+    AudioSource _sfxAudio;
 
     // layer names
     string _leftKnightLayer = "Left Knight";
@@ -31,6 +37,9 @@ public class GameController : MonoBehaviour
         Time.timeScale = 0;
         leftCastle.Health = _gameSettings.startingCastleHealth;
         rightCastle.Health = _gameSettings.startingCastleHealth;
+
+        _musicAudio.playOnAwake = true;
+        _musicAudio.loop = true;
     }
 
     private void Update()
@@ -75,6 +84,7 @@ public class GameController : MonoBehaviour
         string castleLayer = LayerMask.LayerToName(layerOfCastle);
 
         Debug.Log($"{characterLayer} destroyed by {castleLayer} door");
+        _sfxAudio.PlayOneShot(_soundManager.characterHurtSound);
     }
 
     public void OnObjectDestroyedByCastle(Character character, int layerOfCastle)
@@ -134,8 +144,19 @@ public class GameController : MonoBehaviour
 
     public void Play()
     {
+        _musicAudio.Stop();
+        _musicAudio.PlayOneShot(_soundManager.mainGameSound);
         Time.timeScale = 1;
         _startGameOverlay.SetActive(false);
+
+    }
+
+    public void DoorStateChanged(bool isOpen)
+    {
+        if (!isOpen)
+        {
+            _sfxAudio.PlayOneShot(_soundManager.doorSlamSound);
+        }
     }
 
     public void Exit()

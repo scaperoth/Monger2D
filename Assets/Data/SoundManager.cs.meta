@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 298c28dec407e47ec8f9bc22170262b6
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - mainGameSound: {fileID: 8300000, guid: c2be26308550a474f9c60bf27c750ca2, type: 3}
+  - startMenuSound: {fileID: 8300000, guid: 3916bbc71d3164e90ad8acc252c8de08, type: 3}
+  - gameOverSound: {instanceID: 0}
+  - doorSlamSound: {fileID: 8300000, guid: 24a7d4a3879a94800a890b02b0536c10, type: 3}
+  - characterHurtSound: {fileID: 8300000, guid: 1f7ae8987fc094f95a53c12f765087b2, type: 3}
+  - gateChainSound: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
