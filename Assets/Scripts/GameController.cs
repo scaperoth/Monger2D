@@ -84,7 +84,7 @@ public class GameController : MonoBehaviour
         string castleLayer = LayerMask.LayerToName(layerOfCastle);
 
         Debug.Log($"{characterLayer} destroyed by {castleLayer} door");
-        _sfxAudio.PlayOneShot(_soundManager.characterHurtSound);
+        _sfxAudio.PlayOneShot(_soundManager.characterHurtSound, .3f);
     }
 
     public void OnObjectDestroyedByCastle(Character character, int layerOfCastle)
@@ -100,6 +100,7 @@ public class GameController : MonoBehaviour
             // if character is knight then take away health
             if (characterLayer == _rightKnightLayer)
             {
+                _sfxAudio.PlayOneShot(_soundManager.knightSound);
                 float newScore = leftCastle.Health - _gameSettings.knightDamage;
                 leftCastle.Health = newScore;
             }
@@ -107,6 +108,7 @@ public class GameController : MonoBehaviour
             // if character is merchant then give health
             if (characterLayer == _leftMerchantLayer)
             {
+                _sfxAudio.PlayOneShot(_soundManager.merchantSound);
                 float newScore = leftCastle.Health + _gameSettings.merchantBonus;
                 leftCastle.Health = newScore;
             }
@@ -118,6 +120,7 @@ public class GameController : MonoBehaviour
             // if character is knight then take away health
             if (characterLayer == _leftKnightLayer)
             {
+                _sfxAudio.PlayOneShot(_soundManager.knightSound);
                 float newScore = rightCastle.Health - _gameSettings.knightDamage;
                 rightCastle.Health = newScore;
             }
@@ -125,6 +128,7 @@ public class GameController : MonoBehaviour
             // if character is merchant then give health
             if (characterLayer == _rightMerchantLayer)
             {
+                _sfxAudio.PlayOneShot(_soundManager.merchantSound);
                 float newScore = rightCastle.Health + _gameSettings.merchantBonus;
                 rightCastle.Health = newScore;
             }
@@ -133,6 +137,9 @@ public class GameController : MonoBehaviour
 
     void LoseConditionReached()
     {
+        _sfxAudio.Stop();
+        _musicAudio.Stop();
+        _musicAudio.PlayOneShot(_soundManager.gameOverSound);
         Time.timeScale = 0;
         _endGameOverlay.SetActive(true);
     }
@@ -156,6 +163,10 @@ public class GameController : MonoBehaviour
         if (!isOpen)
         {
             _sfxAudio.PlayOneShot(_soundManager.doorSlamSound);
+        }
+        else
+        {
+            _sfxAudio.PlayOneShot(_soundManager.doorOpenSound, .5f);
         }
     }
 

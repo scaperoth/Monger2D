@@ -127,14 +127,21 @@ public class Castle : MonoBehaviour
             return;
         }
 
-        StartCoroutine(PlayDoorSound());
+        if (_door.isOpen == true)
+        {
+            StartCoroutine(PlayDoorSound());
+        }
+        else
+        {
+            OnDoorStateChanged.Invoke(true);
+        }
         OpenDoor(!_door.isOpen);
     }
 
     IEnumerator PlayDoorSound()
     {
-        yield return new WaitForSeconds(.25f);
+        yield return new WaitForSecondsRealtime(.5f);
 
-        OnDoorStateChanged.Invoke(_door.isOpen);
+        OnDoorStateChanged.Invoke(false);
     }
 }

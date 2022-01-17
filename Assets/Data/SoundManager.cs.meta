@@ -6,10 +6,12 @@ MonoImporter:
   defaultReferences:
   - mainGameSound: {fileID: 8300000, guid: c2be26308550a474f9c60bf27c750ca2, type: 3}
   - startMenuSound: {fileID: 8300000, guid: 3916bbc71d3164e90ad8acc252c8de08, type: 3}
-  - gameOverSound: {instanceID: 0}
+  - gameOverSound: {fileID: 8300000, guid: b77eb5cbfdde84647a99b1594ee0a8e0, type: 3}
   - doorSlamSound: {fileID: 8300000, guid: 24a7d4a3879a94800a890b02b0536c10, type: 3}
+  - doorOpenSound: {fileID: 8300000, guid: b6ba8ac8db2454becaeb8bf7f105f683, type: 3}
   - characterHurtSound: {fileID: 8300000, guid: 1f7ae8987fc094f95a53c12f765087b2, type: 3}
-  - gateChainSound: {instanceID: 0}
+  - merchantSound: {fileID: 8300000, guid: cb16852ef31ea4388b64f622c1082b75, type: 3}
+  - knightSound: {fileID: 8300000, guid: 70a03fc1c14274d9a8399e295670a3dc, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

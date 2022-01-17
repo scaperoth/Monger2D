@@ -7,6 +7,8 @@ public class SoundManager : ScriptableObject
     public AudioClip startMenuSound;
     public AudioClip gameOverSound;
     public AudioClip doorSlamSound;
+    public AudioClip doorOpenSound;
     public AudioClip characterHurtSound;
-    public AudioClip gateChainSound;
+    public AudioClip merchantSound;
+    public AudioClip knightSound;
 }
